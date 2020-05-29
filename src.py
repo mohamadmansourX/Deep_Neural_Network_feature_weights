@@ -9,8 +9,8 @@ def avg_act_p(ii,jj):
     aijq=activ_a_k(ii,jj,k)
     pij+= abs(aijq)
   return pij/float(M)
-def activ_a_k(ir,jr,kr): #for xi = k input vector
-  weights=weights1 #Can be loaded from files wights_last_layer.npy
+def activ_a_k(ir,jr,kr):
+  weights=weights1
   weights = weights[0]
   bias = weights[1]
   xi = float(x_train[kr][ir])
@@ -24,13 +24,12 @@ cijk={}
 
 for lk in tqdm(range(0,model93.layers[0].layers[-3].get_config()['units'],)):
   p=0.0
-  #print("neuron:{}".format(lk))
   for iii in range(len(x_train[0])):
       p+=avg_act_p(iii,lk)
-  #print("   p: {}, neuron: {}".format(p,lk))
+  print("   p: {}, neuron: {}".format(p,lk))
   cijk[str(lk)] = p
-  #print("Neuron {} has total avg absolute activ potential = {}".format(lk,p))
-#calculating the net positive contriution of one feauture i
+  print("Neuron {} has total avg absolute activ potential = {}".format(lk,p))
+  
 def netcontr(ith):
   def relcontr(irel,jrel):
     Ninp = len(x_train[0])
